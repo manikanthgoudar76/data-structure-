@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main(){
+    int arr[5];
+    int top=0,rear=-1,x=1,n;
+    printf("The size of the stack is 5\nEnter 1 to Enqueue\nEnter 2 to dequeue\nEnter 3 to display the Queue\n");
+    while(x==1){
+        printf("Enter your choice:");
+        scanf("%d",&n);
+        switch (n){
+            case 1:
+                if(rear>=4){
+                    printf("Queue overflow\n");
+                }
+                else{
+                    rear++;
+                    printf("Enter element:");
+                    scanf("%d", &arr[rear]);
+                }
+                break;
+            case 2:
+                if(rear<0){
+                    printf("Queue underflow\n");
+                }
+                else{
+                    for(int i=0;i<=rear;i++){
+                        arr[i]=arr[i+1];
+                    }
+                    rear--;
+                    printf("Element removed succesfully\n");
+                }
+                break;
+            case 3:
+                if(rear<0){
+                    printf("Empty queue\n");
+                }
+                else{
+                    for(int i=0;i<=rear;i++){
+                    printf("%d ", arr[i]);
+                    }
+                }
+                printf("\n");
+                break;
+            default:
+                printf("Tata⩩");
+                x--;
+        }
+    }
+    return 0;
+}
+
+input:The size of the stack is 5
+Enter 1 to Enqueue
+Enter 2 to dequeue
+Enter 3 to display the Queue
+Enter your choice:enqueue
+output:Tata⩩
