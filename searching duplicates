@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main(){
+  int arr[] = {10,3,24,15,24,15,10,17,19,24,33,17,10,15,13,17};
+  int n=sizeof(arr) / sizeof(arr[0]);
+  int count=0;
+  for (int i=0;i<n;i++) {
+    count = 0;
+    for (int j = 0; j < n; j++) {
+      if (arr[j] == arr[i]) {
+        count++;
+      }
+    }
+    if (count > 1) {
+      printf("Duplicate element detected for %d\n", arr[i]);
+    }
+    else{
+        printf("No duplicates for the number %d\n",arr[i]);
+    }
+  }
+  return 0;
+}
+input:10,3,24,15,24,15,10,17,19,24,33,17,10,15,13,17
+output:Duplicate element detected for 10
+No duplicates for the number 3
+Duplicate element detected for 24
+Duplicate element detected for 15
+Duplicate element detected for 24
+Duplicate element detected for 15
+Duplicate element detected for 10
+Duplicate element detected for 17
+No duplicates for the number 19
+Duplicate element detected for 24
+No duplicates for the number 33
+Duplicate element detected for 17
+Duplicate element detected for 10
+Duplicate element detected for 15
+No duplicates for the number 13
+Duplicate element detected for 17
