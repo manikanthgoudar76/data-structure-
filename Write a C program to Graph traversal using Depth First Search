@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_VERTICES 10
+
+struct Graph {
+    int vertices;
+    bool adjacency_matrix[MAX_VERTICES][MAX_VERTICES];
+    bool visited[MAX_VERTICES];
+};
+
+
+void initGraph(struct Graph* graph, int vertices) {
+    graph->vertices = vertices;
+    for (int i = 0; i < vertices; i++) {
+        graph->visited[i] = false;
+        for (int j = 0; j < vertices; j++) {
+            graph->adjacency_matrix[i][j] = false;
+        }
+    }
+}
+
+void addEdge(struct Graph* graph, int src, int dest) {
+    graph->adjacency_matrix[src][dest] = true;
+
+}
+
+void DFS(struct Graph* graph, int vertex) {
+    graph->visited[vertex] = true;
+    printf("%d ", vertex);
+    for (int i = 0; i < graph->vertices; i++) {
+        if (graph->adjacency_matrix[vertex][i] && !graph->visited[i]) {
+            DFS(graph, i);
+        }
+    }
+}
+
+int main() {
+    int vertices, edges;
+    printf("Enter the number of vertices: ");
+    scanf("%d", &vertices);
+
+    struct Graph graph;
+    initGraph(&graph, vertices);
+
+    printf("Enter the number of edges: ");
+    scanf("%d", &edges);
+
+    printf("Enter the edges (source destination):\n");
+    for (int i = 0; i < edges; i++) {
+        int src, dest;
+        scanf("%d %d", &src, &dest);
+        addEdge(&graph, src, dest);
+    }
+
+    int start_vertex;
+    printf("Enter the starting vertex for DFS: ");
+    scanf("%d", &start_vertex);
+
+    printf("Depth First Traversal starting from vertex %d: ", start_vertex);
+    DFS(&graph, start_vertex);
+    printf("\n");
+
+    return 0;
+}
+input:Enter the number of edges: 6
+Enter the edges (source destination):
+0 1
+0 2
+1 3
+1 4
+2 3
+3 4
+Enter the starting vertex for DFS: 0
+
+output:Depth First Traversal starting from vertex 0: 0 1 3 4 2 
