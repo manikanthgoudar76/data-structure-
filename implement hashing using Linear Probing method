@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+#define SIZE 10
+
+int hash(int key) {
+    return key % SIZE;
+}
+
+int linearProbe(int hashTable[], int key) {
+    int index = hash(key);
+    while (hashTable[index] != -1) {
+        index = (index + 1) % SIZE;
+        if (index == hash(key))
+            return -1; // Hash table is full
+    }
+    return index;
+}
+
+void insert(int hashTable[], int key) {
+    int index = linearProbe(hashTable, key);
+    if (index != -1) {
+        hashTable[index] = key;
+        printf("Key %d inserted at index %d\n", key, index);
+    }
+}
+
+int search(int hashTable[], int key) {
+    int index = hash(key);
+    while (hashTable[index] != key) {
+        index = (index + 1) % SIZE;
+        if (hashTable[index] == -1 || index == hash(key)) {
+            printf("Key %d not found\n", key);
+            return -1;
+        }
+    }
+    printf("Key %d found at index %d\n", key, index);
+    return index;
+}
+
+void display(int hashTable[]) {
+    printf("Hash Table:\n");
+    for (int i = 0; i < SIZE; i++) {
+        if (hashTable[i] != -1)
+            printf("Index %d: Key %d\n", i, hashTable[i]);
+        else
+            printf("Index %d: Empty\n", i);
+    }
+}
+
+int main() {
+    int hashTable[SIZE];
+    for (int i = 0; i < SIZE; i++)
+        hashTable[i] = -1;
+
+    insert(hashTable, 5);
+    insert(hashTable, 25);
+    insert(hashTable, 15);
+    insert(hashTable, 35);
+    insert(hashTable, 10);
+    display(hashTable);
+
+    search(hashTable, 25);
+    search(hashTable, 20);
+
+    return 0;
+}
+
+output:
+Key 5 inserted at index 5
+Key 25 inserted at index 6
+Key 15 inserted at index 7
+Key 35 inserted at index 8
+Key 10 inserted at index 0
+Hash Table:
+Index 0: Key 10
+Index 1: Empty
+Index 2: Empty
+Index 3: Empty
+Index 4: Empty
+Index 5: Key 5
+Index 6: Key 25
+Index 7: Key 15
+Index 8: Key 35
+Index 9: Empty
+Key 25 found at index 6
+Key 20 not found
