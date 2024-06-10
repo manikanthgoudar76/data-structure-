@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    int arr[100];
+
+    printf("Enter the number of elements in array: ");
+    scanf("%d", &n);
+
+    printf("Enter %d integers:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Odd numbers in the array are: ");
+    for(i = 0; i < n; i++) {
+        if(arr[i] % 2 != 0) {
+            printf("%d ", arr[i]);
+        }
+    }
+    printf("\n");
+
+    printf("Even numbers in the array are: ");
+    for(i = 0; i < n; i++) {
+        if(arr[i] % 2 == 0) {
+            printf("%d ", arr[i]);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+input:
+Enter 5 integers:12 23 32 42 50
+output:
+Odd numbers in the array are: 23 
+Even numbers in the array are: 12 32 42 50 
