@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main() {
+    int arr1[100], arr2[100], arr3[200];
+    int s1, s2, s3;
+    int i, j, k;
+
+    printf("\nEnter the size of the first array: ");
+    scanf("%d", &s1);
+
+    printf("Enter the elements of the first array: ");
+    for (i = 0; i < s1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    printf("\nEnter the size of the second array: ");
+    scanf("%d", &s2);
+
+    printf("Enter the elements of the second array: ");
+    for (i = 0; i < s2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    s3 = s1 + s2;
+    k = 0;
+
+    for (i = 0; i < s1; i++) {
+        arr3[k] = arr1[i];
+        k++;
+    }
+
+    for (i = 0; i < s2; i++) {
+        arr3[k] = arr2[i];
+        k++;
+    }
+
+    printf("\nThe merged array is: ");
+    for (i = 0; i < s3; i++) {
+        printf("%d ", arr3[i]);
+    }
+
+    return 0;
+}
+input:
+Enter the size of the first array: 4
+Enter the elements of the first array: 1 2 3 4
+
+Enter the size of the second array: 4
+Enter the elements of the second array: 5 6 7 8
+
+output:
+The merged array is: 1 2 3 4 5 6 7 8 
