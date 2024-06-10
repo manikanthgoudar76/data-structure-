@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, a = 0, b = 1, sum = 0;
+
+    printf("Enter the number of Fibonacci numbers to generate: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci Series: ");
+    for(i = 1; i <= n; i++) {
+        printf("%d, ", a);
+        sum += a;
+        int nextTerm = a + b;
+        a = b;
+        b = nextTerm;
+    }
+    printf("\n");
+
+    printf("Sum of Fibonacci Series: %d\n", sum);
+
+    return 0;
+}
+input:
+0, 1, 1, 2, 3, 
+output:
+Sum of Fibonacci Series: 7
