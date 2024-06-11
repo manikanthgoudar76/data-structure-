@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (!newNode) {
+        printf("Memory error\n");
+        return NULL;
+    }
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+Node* insertNode(Node* root, int data) {
+    if (root == NULL) {
+        root = createNode(data);
+        return root;
+    }
+
+    if (data < root->data) {
+        root->left = insertNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = insertNode(root->right, data);
+    }
+
+    return root;
+}
+
+Node* searchNode(Node* root, int data) {
+    if (root == NULL || root->data == data) {
+        return root;
+    }
+
+    if (data < root->data) {
+        return searchNode(root->left, data);
+    }
+
+    return searchNode(root->right, data);
+}
+
+Node* findMin(Node* root) {
+    while (root->left != NULL) {
+        root = root->left;
+    }
+    return root;
+}
+
+Node* findMax(Node* root) {
+    while (root->right != NULL) {
+        root = root->right;
+    }
+    return root;
+}
+
+int main() {
+    Node* root = NULL;
+
+    root = insertNode(root, 50);
+    insertNode(root, 30);
+    insertNode(root, 20);
+    insertNode(root, 40);
+    insertNode(root, 70);
+    insertNode(root, 60);
+    insertNode(root, 80);
+
+    Node* found = searchNode(root, 40);
+    if (found) {
+        printf("Element 40 found\n");
+    } else {
+        printf("Element 40 not found\n");
+    }
+
+    Node* minNode = findMin(root);
+    printf("Minimum element: %d\n", minNode->data);
+
+    Node* maxNode = findMax(root);
+    printf("Maximum element: %d\n", maxNode->data);
+
+    return 0;
+}
+input:
+output:
+Element 40 found
+Minimum element: 20
+Maximum element: 80
