@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int isValidString(char *str) {
+    for (int i = 0; i < strlen(str); i++) {
+        if (!(str[i] >= 'a' && str[i] <= 'z') && !(str[i] >= 'A' && str[i] <= 'Z')) {
+            return 0;
+        }
+    }
+    return 1;
+}
+int main() {
+    char inputString[100];
+    printf("Enter a string: ");
+    scanf("%s", inputString);
+    if (isValidString(inputString)) {
+        printf("The string is valid.\n");
+    } else {
+        printf("The string is invalid.\n");
+    }
+    return 0;
+}
+
+Output:
+Enter a string: manikanth
+The string is valid.
